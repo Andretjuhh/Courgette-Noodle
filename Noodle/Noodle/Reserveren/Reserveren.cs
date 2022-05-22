@@ -18,16 +18,21 @@ namespace Noodle
             int reservatieDatumMaand = 0;
             int reservatieDatumDag = 0;
             string reservatieTijd = null;
-            int reservatieAantal = 0;
+            string reservatieAantal = null;
 
 
+            static void Terug()
+            {
+                var MainMenu = new MainMenu();
+                MainMenu.Show();
+
+            }
 
             do
             {
                 //Leeg maken van de console
                 Console.Clear();
                 string taalSetting = "nl";
-
 
 
                 //Als het in het Nederlands staat
@@ -40,19 +45,19 @@ namespace Noodle
                     do
                     {
                         //Display dat je op enter moet klikken om terug te gaan
-                        Display("Klik op [ENTER] om de reservering te beginnen");
-                        input = Console.ReadKey();
+                        Display("Druk op [ENTER] om de reservering te beginnen en [5] om af te breken\n\nNote: Als u wilt teruggaan tijdens het maken van de reservering typ 'terug' in");
 
-                        //Met escape terug aan het einde
+
+                        //Met 5 terug aan het einde
                         input = Console.ReadKey();
-                        if (input.Key == ConsoleKey.Escape)
+                        if (input.Key == ConsoleKey.D5)
                         {
                             var MainMenu = new MainMenu();
                             MainMenu.Show();
 
                         }
                     }
-                    while (input.Key != ConsoleKey.Enter);
+                    while (input.Key != ConsoleKey.Enter && input.Key != ConsoleKey.D5);
 
                     Display("\nVul alstublieft u hele naam in:");
 
@@ -61,7 +66,11 @@ namespace Noodle
                     while (geldigeNaam == false)
                     {
                         reservatieNaam = Console.ReadLine();
-                        if (reservatieNaam.Length < 3)
+                        if (reservatieNaam == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (reservatieNaam.Length < 3)
                         {
                             Display("\nVul alstublieft een naam in");
                             geldigeNaam = false;
@@ -76,7 +85,11 @@ namespace Noodle
                     while(validMonth == false)
                     {
                         string maandString = Console.ReadLine();
-                        if (int.TryParse(maandString, out reservatieDatumMaand) && reservatieDatumMaand <= 12)
+                        if (maandString == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (int.TryParse(maandString, out reservatieDatumMaand) && reservatieDatumMaand <= 12)
                         {
                             validMonth = true;
 
@@ -94,7 +107,11 @@ namespace Noodle
                     while (validDay == false)
                     {
                         string dagString = Console.ReadLine();
-                        if (int.TryParse(dagString, out reservatieDatumDag))
+                        if (dagString == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (int.TryParse(dagString, out reservatieDatumDag))
                         {
                             //  Maanden met 31 dagen
                             if (reservatieDatumMaand == 1 || reservatieDatumMaand == 3 || reservatieDatumMaand == 5 || reservatieDatumMaand == 7 || reservatieDatumMaand == 8 || reservatieDatumMaand == 10 || reservatieDatumMaand == 12)
@@ -153,7 +170,11 @@ namespace Noodle
                     while(validTime == false)
                     {
                         reservatieTijd = Console.ReadLine();
-                        if (reservatieTijd == "17:00" || reservatieTijd == "17:30" || reservatieTijd == "18:00" || reservatieTijd == "18:30" || reservatieTijd == "19:00"
+                        if (reservatieTijd == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (reservatieTijd == "17:00" || reservatieTijd == "17:30" || reservatieTijd == "18:00" || reservatieTijd == "18:30" || reservatieTijd == "19:00"
                             || reservatieTijd == "19:30" || reservatieTijd == "20:00" || reservatieTijd == "20:30" || reservatieTijd == "21:00" || reservatieTijd == "21:30" || reservatieTijd == "22:00")
                         {
                             validTime = true;
@@ -168,13 +189,17 @@ namespace Noodle
 
                     Display("\nMet hoeveel mensen wilt u komen?");
                     //Controleert met hoeveel mensen ze komen. De tafels hebben maximaal 4 plekken. Alles daarboven ervoor bellen
-                    reservatieAantal = Convert.ToInt32(Console.ReadLine());
-                    if (reservatieAantal > 6)
+                    reservatieAantal = Console.ReadLine();
+                    if (reservatieAantal == "terug")
                     {
-                        Display("\nVoor reserveringen van meer dan 4 personen moet u even bellen naar het restaurant.");
+                        Terug();
+                    }
+                    else if (Convert.ToInt32(reservatieAantal) > 6)
+                    {
+                        Display("\nVoor reserveringen van meer dan 6 personen moet u even bellen naar het restaurant.");
                     }
 
-                    Display("\nBedankt voor je reservering! Klik op [ENTER] om de reservering te bevestigen!\nAls u de reservering niet wilt bevestigen klik dan op [ESC]");
+                    Display("\nBedankt voor je reservering! Klik op [ENTER] om de reservering te bevestigen!\nAls u de reservering niet wilt bevestigen klik dan op [TERUG]");
                     input = Console.ReadKey();
 
                     //Met escape terug aan het einde
@@ -189,6 +214,11 @@ namespace Noodle
 
 
 
+                    }
+                    if (input.Key == ConsoleKey.D5)
+                    {
+                        var MainMenu = new MainMenu();
+                        MainMenu.Show();
                     }
                 }
 
@@ -206,14 +236,14 @@ namespace Noodle
 
                         //Met escape terug aan het einde
                         input = Console.ReadKey();
-                        if (input.Key == ConsoleKey.Escape)
+                        if (input.Key == ConsoleKey.D5)
                         {
                             var MainMenu = new MainMenu();
                             MainMenu.Show();
 
                         }
                     }
-                    while (input.Key != ConsoleKey.Enter);
+                    while (input.Key != ConsoleKey.Enter && input.Key != ConsoleKey.D5);
 
                     Display("\nPlease, fill in your name:");
 
@@ -221,7 +251,11 @@ namespace Noodle
                     while (geldigeNaam == false)
                     {
                         reservatieNaam = Console.ReadLine();
-                        if (reservatieNaam.Length < 3)
+                        if (reservatieNaam == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (reservatieNaam.Length < 3)
                         {
                             Display("\nPlease fill in a name.");
                             geldigeNaam = false;
@@ -237,7 +271,11 @@ namespace Noodle
                     while (validMonth == false)
                     {
                         string maandString = Console.ReadLine();
-                        if (int.TryParse(maandString, out reservatieDatumMaand) && reservatieDatumMaand <= 12)
+                        if (maandString == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (int.TryParse(maandString, out reservatieDatumMaand) && reservatieDatumMaand <= 12)
                         {
                             validMonth = true;
 
@@ -255,7 +293,11 @@ namespace Noodle
                     while (validDay == false)
                     {
                         string dagString = Console.ReadLine();
-                        if (int.TryParse(dagString, out reservatieDatumDag))
+                        if (dagString == "terug")
+                        {
+                            Terug();
+                        }
+                        else if (int.TryParse(dagString, out reservatieDatumDag))
                         {
                             //  Maanden met 31 dagen
                             if (reservatieDatumMaand == 1 || reservatieDatumMaand == 3 || reservatieDatumMaand == 5 || reservatieDatumMaand == 7 || reservatieDatumMaand == 8 || reservatieDatumMaand == 10 || reservatieDatumMaand == 12)
@@ -315,6 +357,10 @@ namespace Noodle
                     while (validTime == false)
                     {
                         reservatieTijd = Console.ReadLine();
+                        if (reservatieTijd == "terug")
+                        {
+                            Terug();
+                        }
                         if (reservatieTijd == "17:00" || reservatieTijd == "17:30" || reservatieTijd == "18:00" || reservatieTijd == "18:30" || reservatieTijd == "19:00"
                             || reservatieTijd == "19:30" || reservatieTijd == "20:00" || reservatieTijd == "20:30" || reservatieTijd == "21:00" || reservatieTijd == "21:30" || reservatieTijd == "22:00")
                         {
@@ -330,8 +376,12 @@ namespace Noodle
 
                     Display("\nWith how many people would you like to come?");
                     //Controleert met hoeveel mensen ze komen. De tafels hebben maximaal 4 plekken. Alles daarboven ervoor bellen
-                    reservatieAantal = Convert.ToInt32(Console.ReadLine());
-                    if (reservatieAantal > 6)
+                    reservatieAantal = Console.ReadLine();
+                    if (reservatieAantal == "terug")
+                    {
+                        Terug();
+                    }
+                    if (Convert.ToInt32(reservatieAantal) > 6)
                     {
                         Display("\nFor reservations with more then 6 people.");
                     }
@@ -352,15 +402,20 @@ namespace Noodle
 
 
                     }
+                    if (input.Key == ConsoleKey.D5)
+                    {
+                        var MainMenu = new MainMenu();
+                        MainMenu.Show();
+                    }
                 }
 
             }
-            while (reservatieNaam == null || reservatieDatumMaand == 0 || reservatieTijd == null || reservatieAantal == 0);
+            while (reservatieNaam == null || reservatieDatumMaand == 0 || reservatieTijd == null || reservatieAantal == null);
 
 
             //Met escape terug aan het einde
             input = Console.ReadKey();
-            if (input.Key == ConsoleKey.Escape)
+            if (input.Key == ConsoleKey.D5)
             {
                 var MainMenu = new MainMenu();
                 MainMenu.Show();

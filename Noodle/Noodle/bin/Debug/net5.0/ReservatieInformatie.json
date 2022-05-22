@@ -1,7 +1,4 @@
 {
-  "Naam":null,
-  "Maand" : 0,
-  "Dag" : 0,
-  "Tijd": null,
-  "AantalPersonen" : 0
+  "Reserveringen": "Er zijn geen reserveringen",
+  "IDCounter": 0
 }

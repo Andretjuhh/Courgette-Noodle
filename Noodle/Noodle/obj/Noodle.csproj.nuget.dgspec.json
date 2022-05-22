@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sophie/Documents/GitHub/Courgette-Noodle/Noodle/Noodle/Noodle.csproj": {}
+    "C:\\Users\\Frans\\Documents\\GitHub\\Courgette-Noodle\\Noodle\\Noodle\\Noodle.csproj": {}
   },
   "projects": {
-    "/Users/sophie/Documents/GitHub/Courgette-Noodle/Noodle/Noodle/Noodle.csproj": {
+    "C:\\Users\\Frans\\Documents\\GitHub\\Courgette-Noodle\\Noodle\\Noodle\\Noodle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sophie/Documents/GitHub/Courgette-Noodle/Noodle/Noodle/Noodle.csproj",
+        "projectUniqueName": "C:\\Users\\Frans\\Documents\\GitHub\\Courgette-Noodle\\Noodle\\Noodle\\Noodle.csproj",
         "projectName": "Noodle",
-        "projectPath": "/Users/sophie/Documents/GitHub/Courgette-Noodle/Noodle/Noodle/Noodle.csproj",
-        "packagesPath": "/Users/sophie/.nuget/packages/",
-        "outputPath": "/Users/sophie/Documents/GitHub/Courgette-Noodle/Noodle/Noodle/obj/",
+        "projectPath": "C:\\Users\\Frans\\Documents\\GitHub\\Courgette-Noodle\\Noodle\\Noodle\\Noodle.csproj",
+        "packagesPath": "C:\\Users\\Frans\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Frans\\Documents\\GitHub\\Courgette-Noodle\\Noodle\\Noodle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/sophie/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Frans\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,6 +39,16 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "System.Linq": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -52,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.407/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

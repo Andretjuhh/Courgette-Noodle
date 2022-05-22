@@ -2,56 +2,63 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Text.Json;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+
 
 namespace Noodle
 {
 
-    class MenuAanpassing : Step //class van de cs file, waarmee je in andere files naar deze kan verwijzen (bijv van admin selectie scherm naar overzicht scherm)
+    class MenuAanpassing : Step 
     {
-        public class MenuAanpassen
-        {
-            // string voor stukje "overzicht" in de json, voeg hier meer bij toe als je ook meer stukjes in de json zet
-            public string MenuAanpas { get; set; }
-        }
-        // hier zet ie de json om tot leesbaar formaat
-        public MenuAanpassen Deserialize()
-        {
-        string json = File.ReadAllText("MenuAanpassen.json");
-        var MenuAanpassenJson = JsonSerializer.Deserialize<MenuAanpassen>(json);
-        return MenuAanpassenJson;
-        }
 
         public override void Show()
         {
-            Log("");
-            var greetingsJson = new WelcomePage();
-            string taalSetting = greetingsJson.Getlanguage(); //pakt de taal van de greetingsfile
             ConsoleKeyInfo input;
-
-            do
+            input = Console.ReadKey();
+            string Kaas = "";
+            Console.Clear();
+            Console.WriteLine("Kies een ID\n[1] - ID123\n[2] - ID321");
+            if (input.Key == ConsoleKey.D1)
             {
-                {
-                    Console.Clear();
-                    var MenuAanpassenJson = Deserialize();
-                    if (taalSetting == "nl")
-                    { //de tweede write line pakt ie wat onder "overzicht" staat in het json bestand
-                        Console.WriteLine("Pas hier het menu aan: (komt nog)");
-                        Console.WriteLine(MenuAanpassenJson.MenuAanpas);
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("Change the menu here: ");
-                        Console.WriteLine(MenuAanpassenJson.MenuAanpas);
-                    }
-                    // input wordt wat de gebruiker erin typt
-                    input = Console.ReadKey();
-
-                }
+                Kaas += "ID123";
             }
-            while (input.Key != ConsoleKey.Escape);
-            
+            if (input.Key == ConsoleKey.D2)
+            {
+                Kaas += "ID321";
+            }
+
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                writer.Formatting = Formatting.Indented;
+
+                writer.WriteStartObject();
+                writer.WritePropertyName("CPU");
+                writer.WriteValue(Kaas);
+                writer.WritePropertyName("PSU");
+                writer.WriteValue("500W");
+                writer.WritePropertyName("Drives");
+                writer.WriteStartArray();
+                writer.WriteValue("DVD read/writer");
+                writer.WriteComment("(broken)");
+                writer.WriteValue("500 gigabyte hard drive");
+                writer.WriteValue("200 gigabyte hard drive");
+                writer.WriteEnd();
+                writer.WriteEndObject();
+            }
+            string json = JsonConvert.SerializeObject(sb);
+            string sk = (sb.ToString());
+            //Console.Clear();
+            //Console.WriteLine(sb.ToString());
+            File.WriteAllText("ReservatieInformatie.json", sk);
+
+
+            input = Console.ReadKey();
+            while (input.Key != ConsoleKey.Escape) ;
+
             if (input.Key == ConsoleKey.Escape)
             { // bij escape gaat ie weer terug naar Admin.cs
                 var Admin = new Admin();
@@ -59,15 +66,51 @@ namespace Noodle
 
             }
         }
-        public void Serialize(MenuAanpassing menuaanpassing)
+        public class ReservationThing
         {
-            var serializeOptions = new JsonSerializerOptions
+            public string Reservation { get; set; }
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+
+            using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                WriteIndented = true
-            };
-            // serialized het weer want vs wil dat
-            var MenuAanpassenJson = JsonSerializer.Serialize(menuaanpassing, serializeOptions);
-            File.WriteAllText("MenuAanpassen.json", MenuAanpassenJson);
+                writer.Formatting = Formatting.Indented;
+
+                writer.WriteStartObject();
+                writer.WritePropertyName("CPU");
+                writer.WriteValue("Intel");
+                writer.WritePropertyName("PSU");
+                writer.WriteValue("500W");
+                writer.WritePropertyName("Drives");
+                writer.WriteStartArray();
+                writer.WriteValue("DVD read/writer");
+                writer.WriteComment("(broken)");
+                writer.WriteValue("500 gigabyte hard drive");
+                writer.WriteValue("200 gigabyte hard drive");
+                writer.WriteEnd();
+                writer.WriteEndObject();
+            }
+
+            // {
+            //   "CPU": "Intel",
+            //   "PSU": "500W",
+            //   "Drives": [
+            //     "DVD read/writer"
+            //     /*(broken)*/,
+            //     "500 gigabyte hard drive",
+            //     "200 gigabyte hard drive"
+            //   ]
+            // }
+        }
+
+        class Program
+        {
+            
+            
         }
     }
 }

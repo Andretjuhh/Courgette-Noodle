@@ -1,0 +1,14 @@
+                        string example = "ID01-20/05-Table1\n ID02-04/06-Table2\n ID03-21/05-Table1\n";
+
+                        string result = string.Join("\n", example
+                          .Split('\n')
+                          .OrderBy(item => DateTime.TryParseExact(
+                                 Regex.Match(item, "[0-9]{1,2}/[0-9]{1,2}").Value,
+                                "d/M",
+                                 null,
+                                 DateTimeStyles.AssumeLocal,
+                                 out var date)
+                             ? date
+                             : DateTime.MaxValue));
+                        Console.WriteLine(example);
+                        Console.WriteLine(result);

@@ -1,0 +1,1 @@
+{"m_MaxCapacity":2147483647,"Capacity":256,"m_StringValue":"{\r\n  \"CPU\": \"Intel\",\r\n  \"PSU\": \"500W\",\r\n  \"Drives\": [\r\n    \"DVD read/writer\"\r\n    /*(broken)*/,\r\n    \"500 gigabyte hard drive\",\r\n    \"200 gigabyte hard drive\"\r\n  ]\r\n}","m_currentThread":0}

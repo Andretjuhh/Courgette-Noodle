@@ -114,3 +114,5 @@ C:\Users\mirza\Documents\GitHub\Courgette-Noodle\Noodle\Noodle\obj\Debug\net5.0\
 C:\Users\mirza\Documents\GitHub\Courgette-Noodle\Noodle\Noodle\obj\Debug\net5.0\Noodle.pdb
 C:\Users\mirza\Documents\GitHub\Courgette-Noodle\Noodle\Noodle\obj\Debug\net5.0\Noodle.genruntimeconfig.cache
 C:\Users\mirza\Documents\GitHub\Courgette-Noodle\Noodle\Noodle\obj\Debug\net5.0\ref\Noodle.dll
+C:\Users\Frans\Documents\GitHub\Courgette-Noodle\Noodle\Noodle\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Frans\Documents\GitHub\Courgette-Noodle\Noodle\Noodle\obj\Debug\net5.0\Noodle.csproj.CopyComplete

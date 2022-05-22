@@ -29,6 +29,7 @@ namespace Noodle
         public string ingelogdeMember { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        public int counter { get; set; }
         }
 
         public  Greetings Deserialize()
@@ -57,11 +58,12 @@ namespace Noodle
         var greetingsJson = Deserialize();
         return greetingsJson.ingelogdeMember;
         }
+
         public override void Show()
         {
         Log("[Step 1]");
 
-
+        
         ConsoleKeyInfo input;
 
         do
