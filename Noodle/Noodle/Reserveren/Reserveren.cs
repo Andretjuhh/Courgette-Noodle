@@ -171,7 +171,7 @@ namespace Noodle
                     reservatieAantal = Convert.ToInt32(Console.ReadLine());
                     if (reservatieAantal > 6)
                     {
-                        Display("\nVoor reserveringen van meer dan 4 personen moet u even bellen naar het restaurant.");
+                        Display("\nVoor reserveringen van meer dan 6 personen moet u even bellen naar het restaurant.");
                     }
 
                     Display("\nBedankt voor je reservering! Klik op [ENTER] om de reservering te bevestigen!\nAls u de reservering niet wilt bevestigen klik dan op [ESC]");
